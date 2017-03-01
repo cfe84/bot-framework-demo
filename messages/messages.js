@@ -12,7 +12,8 @@ var quotes = {
   isDown: ["You should make it more resilient", "At EA this wouldn't have happened"],
   volume: ["BD doesn't have any volume.", "You should have seen at EA, we had BILLIONS of events"],
   microservices: ["Oh great, we're building a distributed monolith.", "At EA we had a monolith and it was great", "That's not how you do a microservice."],
-  pullRequests: weTriedIt("pull requests").concat(["I don't believe in pull requests", "You should merge directly to master"])
+  pullRequests: weTriedIt("pull requests").concat(["I don't believe in pull requests", "You should merge directly to master"]),
+  IwasFixingIt: ["Oh no, I was fixing it! All this work for nothing", "I would have fixed it faster if you told me"]
 };
 
 var answer = function(message){
@@ -42,11 +43,12 @@ var answer = function(message){
     case /\bbroken\b/.test(message.text):
       setResponse(quotes.notWorking);
       break;
-    case /Failure after/.test(message.text):
     case /\btry\b/i.test(message.text):
     case /\btried\b/i.test(message.text):
       setResponse(quotes.tried);
       break;
+    case /Still Failing/.test(message.text):
+    case /Failure after/.test(message.text):
     case /\b403\b/i.test(message.text):
     case /\bslow\b/i.test(message.text):
     case /\bis down\b/i.test(message.text):
@@ -63,6 +65,8 @@ var answer = function(message){
     case /\bpull[ -]?request/i.test(message.text):
       setResponse(quotes.pullRequests);
       break;
+    case /Back to normal after/.test(message.text):
+      setResponse(quotes.IwasFixingIt);
   }
 
   return response;

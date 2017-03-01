@@ -53,7 +53,11 @@ describe("Message processing", () => {
   });
 
   it("Should insult you when it's down", () =>
-    ["The website is slow.", "The site is down!"].forEach((message) => testMessage(message, processor.quotes.isDown))
+    ["1.amazonaws.com/estimation-service:latest Failure after 1 min 42 sec (Open)","1.amazonaws.com/estimation-service:latest Still Failing after 3 min 54 sec (Open)", "The website is slow.", "The site is down!"].forEach((message) => testMessage(message, processor.quotes.isDown))
+  );
+
+  it("Should tell you it was fixing it", () =>
+    ["service:latest Back to normal after 1 hr 53 min (Open)"].forEach((message) => testMessage(message, processor.quotes.IwasFixingIt))
   );
 
   it("Should tell you there's no volume", () =>
