@@ -1,6 +1,7 @@
 "use strict";
 var builder = require("botbuilder");
 var botbuilder_azure = require("botbuilder-azure");
+var messages = require("./messages")
 
 var useEmulator = (process.env.NODE_ENV == 'development');
 
@@ -14,7 +15,9 @@ var connector = useEmulator ? new builder.ChatConnector() : new botbuilder_azure
 var bot = new builder.UniversalBot(connector);
 
 bot.dialog('/', function (session) {
-    session.send('You said ' + session.message.text);
+    var response = messages.process(session.message);
+    if (response.respond)
+        session.send(response.text);
 });
 
 if (useEmulator) {
