@@ -39,8 +39,25 @@ describe("Message processing", () => {
       testMessage(message, processor.quotes.notWorking));
   });
 
-  it("Should be say it tried", () => {
+  it("Should be saying it tried", () => {
     ["I've tried everything", "Did you try this thing"].forEach((message) =>
       testMessage(message, processor.quotes.tried));
   });
+
+  it("Should insult you when it's down", () =>
+    ["The website is slow.", "The site is down!"].forEach((message) => testMessage(message, processor.quotes.isDown))
+  );
+
+  it("Should tell you there's no volume", () =>
+    ["The website has a high throughput.", "The site is high volume!"].forEach((message) => testMessage(message, processor.quotes.volume))
+  );
+  
+  it("Should tell you we don't have microservices", () =>
+    ["You should create a new microservice.", "We have tons of microservices and stuff!"].forEach((message) => testMessage(message, processor.quotes.microservices))
+  );
+
+  it("Should tell you PRs are evil", () =>
+    ["I created a PR", "I assigned the pull request to you."].forEach((message) => testMessage(message, processor.quotes.pullRequests))
+  );
+
 });
