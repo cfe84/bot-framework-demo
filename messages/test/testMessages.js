@@ -4,7 +4,7 @@ var should = require("should");
 var processor = require("../messages");
 
 testMessage = (text, matchResponse = null) => {
-  var response = processor.process({text});
+  var response = processor.answer({text});
   response.respond.should.equal(matchResponse !== null);
   if (matchResponse !== null) {
     if (Object.prototype.toString.call( matchResponse ) === '[object Array]')
@@ -13,6 +13,14 @@ testMessage = (text, matchResponse = null) => {
       response.text.should.match(matchResponse);
   }
 }
+
+describe("Set prob", () => {
+  it("Should set chance", () => {
+    var response = processor.process({text: "set chance to 39%"});
+    response.respond.should.be.true();
+    response.text.should.equal("Ok, I\'ll reply with a chance of 0.39");
+  });
+});
 
 describe("Message processing", () => {
 

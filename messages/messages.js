@@ -15,7 +15,7 @@ var quotes = {
   pullRequests: weTriedIt("pull requests").concat(["I don't believe in pull requests", "You should merge directly to master"])
 };
 
-var process = function(message){
+var answer = function(message){
   response = {
     respond: false,
     text: ""
@@ -42,10 +42,12 @@ var process = function(message){
     case /\bbroken\b/.test(message.text):
       setResponse(quotes.notWorking);
       break;
+    case /Failure after/.test(message.text):
     case /\btry\b/i.test(message.text):
     case /\btried\b/i.test(message.text):
       setResponse(quotes.tried);
       break;
+    case /\b403\b/i.test(message.text):
     case /\bslow\b/i.test(message.text):
     case /\bis down\b/i.test(message.text):
       setResponse(quotes.isDown);
@@ -66,7 +68,27 @@ var process = function(message){
   return response;
 };
 
+var rand = 0.5;
+
+var process = (message) =>
+{
+  var prob = /set chance to ([0-9]+)/i;
+  if (prob.test(message.text)) {
+    rand = prob.exec(message.text)[1] / 100;
+    return {
+      respond: true,
+      text: `Ok, I'll reply with a chance of ${rand}`
+    };
+  }
+  else
+    if (Math.random() < rand)
+      return answer(message);
+    else
+      return {respond: false, text: ""};
+};
+
 module.exports = {
+  answer,
   process,
   quotes
 };
