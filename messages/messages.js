@@ -90,10 +90,10 @@ var process = (message) =>
     };
   }
   else
-    if (Math.random() < rand)
+    // if (Math.random() < rand)
       return answer(message);
-    else
-      return {respond: false, text: ""};
+    // else
+    //   return {respond: false, text: ""};
 };
 
 module.exports = {
