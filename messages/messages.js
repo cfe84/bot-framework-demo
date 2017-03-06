@@ -7,6 +7,7 @@ var quotes = {
   generalitiesAboutEa: ["EA is awesome", "At EA everything was cool", "We actually understood what we were doing at EA", "This place is beneath me"],
   unitTests: weTriedIt("unit tests").concat(["Developers shouldn't write unit tests"]),
   AWS: weTriedIt("AWS"),
+  standup: weTriedIt("standup"),
   tried: ["We tried it at EA", "I know how it works"],
   notWorking: ["It's not my fault", "I didn't break it", "It works on my machine", "It's not me it's you", "They forced me to do it this way"],
   isDown: ["You should make it more resilient", "At EA this wouldn't have happened"],
@@ -67,6 +68,10 @@ var answer = function(message){
       break;
     case /Back to normal after/.test(message.text):
       setResponse(quotes.IwasFixingIt);
+      break;
+    case /standup/i.test(message.text):
+      setResponse(quotes.standup);
+      break;
   }
 
   return response;

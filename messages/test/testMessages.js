@@ -72,4 +72,8 @@ describe("Message processing", () => {
     ["I created a PR", "I assigned the pull request to you."].forEach((message) => testMessage(message, processor.quotes.pullRequests))
   );
 
+  it("Should bitch about standups", () =>
+    ["Reminder: do standup"].forEach((message) => testMessage(message, processor.quotes.standup))
+  );
+
 });
