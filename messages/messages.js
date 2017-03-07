@@ -3,13 +3,15 @@ var pick = (array) => array[Math.floor(Math.random() * array.length)];
 var weTriedIt = (something) =>
   [ `We tried ${something} at my former company, it doesn't work`, `I know how ${something} works: it doesn't really work`, `${something} is useless`, `I don't believe in ${something}`, `${something} sucks`]
 
+var names = ["@ardy", "@anthony", "@graham", "@bessie", "@robblovell", "@charles"];
+
 var quotes = {
   generalitiesAboutCompany: ["my former company is awesome", "At my former company everything was cool", "We actually understood what we were doing at my former company", "This place is beneath me"],
   unitTests: weTriedIt("unit testing").concat(["Developers shouldn't write unit tests"]),
   AWS: weTriedIt("AWS"),
   standup: weTriedIt("standup"),
   tried: weTriedIt("this"),
-  notWorking: ["It's not my fault", "I didn't break it", "It works on my machine", "It's not me it's you", "They forced me to do it this way"],
+  notWorking: ["It's not my fault", `It's ${pick(names)}'s fault.`,  `I blame ${pick(names)}. He told me to do it this way.`,  "I didn't break it", "It works on my machine", "It's not me it's you", "They forced me to do it this way"],
   isDown: ["You should make it more resilient", "At my former company this wouldn't have happened"],
   volume: ["BD doesn't have any volume.", "You should have seen at my former company, we had BILLIONS of events"],
   microservices: ["Oh great, we're building a distributed monolith.", "At my former company we had a monolith and it was great", "That's not how you do a microservice."],
