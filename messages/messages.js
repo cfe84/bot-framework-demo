@@ -1,18 +1,18 @@
 var pick = (array) => array[Math.floor(Math.random() * array.length)];
 
 var weTriedIt = (something) =>
-  [ `We tried ${something} at EA, it doesn't work`, `${something} are useless`, `I don't believe in ${something}`, `${something} sucks`]
+  [ `We tried ${something} at my former company, it doesn't work`, `I know how ${something} works: it doesn't really work`, `${something} is useless`, `I don't believe in ${something}`, `${something} sucks`]
 
 var quotes = {
-  generalitiesAboutEa: ["EA is awesome", "At EA everything was cool", "We actually understood what we were doing at EA", "This place is beneath me"],
-  unitTests: weTriedIt("unit tests").concat(["Developers shouldn't write unit tests"]),
+  generalitiesAboutCompany: ["my former company is awesome", "At my former company everything was cool", "We actually understood what we were doing at my former company", "This place is beneath me"],
+  unitTests: weTriedIt("unit testing").concat(["Developers shouldn't write unit tests"]),
   AWS: weTriedIt("AWS"),
   standup: weTriedIt("standup"),
-  tried: ["We tried it at EA", "I know how it works"],
+  tried: weTriedIt("this"),
   notWorking: ["It's not my fault", "I didn't break it", "It works on my machine", "It's not me it's you", "They forced me to do it this way"],
-  isDown: ["You should make it more resilient", "At EA this wouldn't have happened"],
-  volume: ["BD doesn't have any volume.", "You should have seen at EA, we had BILLIONS of events"],
-  microservices: ["Oh great, we're building a distributed monolith.", "At EA we had a monolith and it was great", "That's not how you do a microservice."],
+  isDown: ["You should make it more resilient", "At my former company this wouldn't have happened"],
+  volume: ["BD doesn't have any volume.", "You should have seen at my former company, we had BILLIONS of events"],
+  microservices: ["Oh great, we're building a distributed monolith.", "At my former company we had a monolith and it was great", "That's not how you do a microservice."],
   pullRequests: weTriedIt("pull requests").concat(["I don't believe in pull requests", "You should merge directly to master"]),
   IwasFixingIt: ["Oh no, I was fixing it! All this work for nothing", "I would have fixed it faster if you told me"]
 };
@@ -31,9 +31,10 @@ var answer = function(message){
 
   switch (true)
   {
-    case /\bEA\b/.test(message.text):
-    case /electronic art/i.test(message.text):
-      setResponse(quotes.generalitiesAboutEa);
+    case /\bcompany\b/i.test(message.text):
+    case /\bBD\b/i.test(message.text):
+    case /build[ ]?direct/i.test(message.text):
+      setResponse(quotes.generalitiesAboutCompany);
       break;
     case /unit test/i.test(message.text):
       setResponse(quotes.unitTests);
@@ -90,10 +91,7 @@ var process = (message) =>
     };
   }
   else
-    // if (Math.random() < rand)
-      return answer(message);
-    // else
-    //   return {respond: false, text: ""};
+    return answer(message);
 };
 
 module.exports = {

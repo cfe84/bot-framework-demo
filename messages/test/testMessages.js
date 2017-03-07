@@ -28,13 +28,9 @@ describe("Message processing", () => {
       ["Hello, how are you?"].forEach((message) => testMessage(message));
   });
 
-  it("Should react to EA", () => {
-    ["Do you like EA?", "At EA stuff is screwed up", "EA"].forEach((message) =>
-      testMessage(message, processor.quotes.generalitiesAboutEa));
-  });
-
-  it("Should not overreact to EA", () => {
-    ["Each time I hear that", "You're being mean", "It's a BEACH"].forEach((message) => testMessage(message))
+  it("Should react to company", () => {
+    ["Do you like the company?", "At Builddirect stuff is screwed up", "Build Direct", "builddirect", 'BD', "bd"].forEach((message) =>
+      testMessage(message, processor.quotes.generalitiesAboutCompany));
   });
 
   it("Should react to Unit tests", () => {
