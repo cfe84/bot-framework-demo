@@ -11,7 +11,7 @@ var quotes = {
   AWS: weTriedIt("AWS"),
   standup: weTriedIt("standup"),
   tried: weTriedIt("this"),
-  notWorking: ["It's not my fault", `It's ${pick(names)}'s fault.`,  `I blame ${pick(names)}. He told me to do it this way.`,  "I didn't break it", "It works on my machine", "It's not me it's you", "They forced me to do it this way"],
+  notWorking: ["It's not my fault", `It's ${pick(names)}'s fault.`,  `I blame ${pick(names)}. He told me to do it this way.`, `${pick(names)} forced me to do it this way.`, "I didn't break it", "It works on my machine", "It's not me it's you", "They forced me to do it this way"],
   isDown: ["You should make it more resilient", "At my former company this wouldn't have happened"],
   volume: ["BD doesn't have any volume.", "You should have seen at my former company, we had BILLIONS of events"],
   microservices: ["Oh great, we're building a distributed monolith.", "At my former company we had a monolith and it was great", "That's not how you do a microservice."],
